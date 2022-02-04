@@ -20,8 +20,12 @@ export const GlobalProvider = ({ children }) => {
                 "Content-Type": "application/json",
             },
         };
-        const productResponse = await axios(productAPI);
-        setProducts(productResponse.data);
+        try {
+            const productResponse = await axios(productAPI);
+            setProducts(productResponse.data);
+        } catch (error) {
+            alert("Error while fetching products. Please Reload the page");
+        }
     }, []);
     const isExists = (prevState, productObject) => {
         const filteredList = prevState.filter((product) => {
@@ -77,8 +81,14 @@ export const GlobalProvider = ({ children }) => {
                 price: parseInt(editProductObject.price),
             },
         };
-        const editResponse = await axios(productUpdateAPI);
-        console.log(editResponse);
+        try {
+            const editResponse = await axios(productUpdateAPI);
+            if (editResponse) {
+                getProducts();
+            }
+        } catch (e) {
+            alert("Error while updating. Please try again");
+        }
     };
     const completeOrder = () => {
         const orders = cart.map((product) => {
