@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
@@ -12,7 +12,7 @@ export const GlobalProvider = ({ children }) => {
     useEffect(() => {
         setUser(uuidv4());
     }, []);
-    const getProducts = async () => {
+    const getProducts = useCallback(async () => {
         const productAPI = {
             method: "get",
             url: `${process.env.REACT_APP_API_URL}/api/products`,
@@ -22,7 +22,7 @@ export const GlobalProvider = ({ children }) => {
         };
         const productResponse = await axios(productAPI);
         setProducts(productResponse.data);
-    };
+    }, []);
     const isExists = (prevState, productObject) => {
         const filteredList = prevState.filter((product) => {
             return productObject._id === product._id;
