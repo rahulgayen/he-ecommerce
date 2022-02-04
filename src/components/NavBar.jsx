@@ -4,7 +4,7 @@ import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 function NavBar() {
-  const { user, cart } = useContext(GlobalContext);
+  const { cart } = useContext(GlobalContext);
 
   return (
     <div className="sticky top-0 left-0 bg-cyan-900 flex justify-between gap-4 text-white font-semibold py-2 px-10">
