@@ -1,6 +1,6 @@
 import { Routes, BrowserRouter as Router, Route } from 'react-router-dom';
 import { GlobalProvider } from "./context/GlobalContext";
-import { useEffect } from 'react';
+/* import { useEffect } from 'react'; */
 import "./index.css"
 import NavBar from "./components/NavBar"
 import Explore from "./pages/Explore"
