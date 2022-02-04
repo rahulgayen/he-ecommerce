@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, BrowserRouter as Router, Route } from 'react-router-dom';
+import { GlobalProvider } from "./context/GlobalContext";
+import { useEffect } from 'react';
+import "./index.css"
+import NavBar from "./components/NavBar"
+import Explore from "./pages/Explore"
+import Orders from './pages/Orders';
+import Cart from "./pages/Cart";
+import EditProducts from './pages/EditProducts';
 function App() {
+  /* useEffect(() => {
+    window.confirm("On page Load")
+  }, []) */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route exact path="/" element={<Explore />} />
+          <Route exact path="/orders" element={<Orders />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/edit-products" element={<EditProducts />} />
+        </Routes>
+      </Router>
+    </GlobalProvider>
   );
 }
 
