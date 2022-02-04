@@ -11,6 +11,7 @@ function App() {
   /* useEffect(() => {
     window.confirm("On page Load")
   }, []) */
+  console.log("app start")
   return (
     <GlobalProvider>
       <Router>
