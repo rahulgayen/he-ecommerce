@@ -9,10 +9,8 @@ export const GlobalProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [pastOrders, setPastOrders] = useState([]);
 
-    useEffect(() => {
-        setUser(uuidv4());
-    }, []);
     const getProducts = useCallback(async () => {
+
         const productAPI = {
             method: "get",
             url: `${process.env.REACT_APP_API_URL}/api/products`,
@@ -27,6 +25,12 @@ export const GlobalProvider = ({ children }) => {
             alert("Error while fetching products. Please Reload the page");
         }
     }, []);
+
+    useEffect(() => {
+        setUser(uuidv4());
+        getProducts();
+    }, [getProducts]);
+
     const isExists = (prevState, productObject) => {
         const filteredList = prevState.filter((product) => {
             return productObject._id === product._id;
